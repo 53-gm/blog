@@ -13,6 +13,14 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        ZenKakuGothicNew: ["var(--font-ZenKakuGothicNew)"],
+      },
+      colors: {
+        "nb" : "#0a224e",
+        "nb2" : "#0a254e",
+        "w2" : "#fdf5e6",
+      }
     },
   },
   plugins: [],
