@@ -43,15 +43,15 @@ const getPageMetaData = (post: any) => {
 
   const getThumbnail = () => {
     const thumbnailList = post.properties.Thumbnail.files[0];
-    
+
     if (thumbnailList != undefined) {
       return thumbnailList.file.url;
-    };
+    }
 
     return "/hatena.png";
   };
 
-   //console.log(post.properties.Thumbnail.files[0]);
+  //console.log(post.properties.Thumbnail.files[0]);
 
   return {
     id: post.id,
@@ -81,8 +81,6 @@ export const getSinglePost = async (slug: any) => {
   const metadata = getPageMetaData(page);
 
   const mdBlocks = await n2m.pageToMarkdown(page.id);
-
-  console.log(mdBlocks);
 
   const mdString = n2m.toMarkdownString(mdBlocks).parent;
 

@@ -48,7 +48,7 @@ const Post = ({ post }: any) => {
       <ul className="flex h-full">
         <li className="lg:w-1/5 lg:border-r"></li>
         <li className="lg:w-3/5 lg:border-r">
-          <section className="container px-16 h-full mt-32">
+          <section className="container lg:px-16 h-full mt-32">
             <div className="text-center border-b border-w2 mb-12">
               <h2 className="w-full text-5xl font-medium py-2">
                 {post.metadata.title}
