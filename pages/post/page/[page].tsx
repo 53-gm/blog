@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       postsByPage,
       numberOfPage,
     },
-    revalidate: 60 * 60,
+    revalidate: 60 * 1,
   };
 };
 

@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       numberOfPageByTag,
       currentTag,
     },
-    revalidate: 60 * 60,
+    revalidate: 60 * 1,
   };
 };
 
