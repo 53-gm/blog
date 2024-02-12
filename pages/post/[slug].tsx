@@ -1,5 +1,5 @@
 import MyImage from "@/components/MyImage";
-import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
+import { getSinglePost } from "@/lib/notionAPI";
 import styles from "@/styles/blogPage.module.scss";
 import "katex/dist/katex.min.css";
 import Head from "next/head";
@@ -17,23 +17,13 @@ interface CodeProps {
   children?: any;
 }
 
-export const getStaticPaths = async () => {
-  const allPosts = await getAllPosts();
-  const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps = async ({ params }: any) => {
+export const getServerSideProps = async ({ params }: any) => {
   const post = await getSinglePost(params.slug);
 
   return {
     props: {
       post,
     },
-    revalidate: 60 * 1,
   };
 };
 

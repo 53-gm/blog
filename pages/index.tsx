@@ -1,10 +1,11 @@
 import SinglePost from "@/components/Post/SinglePost";
 import Tag from "@/components/Tag/Tag";
 import { getAllTags, getPostsForTopPage } from "@/lib/notionAPI";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-export const getStaticProps: GetStaticProps = async () => {
+
+export const getServerSideProps: GetServerSideProps = async () => {
   const fourPosts = await getPostsForTopPage(10);
   const allTags = await getAllTags();
 
@@ -13,7 +14,6 @@ export const getStaticProps: GetStaticProps = async () => {
       fourPosts,
       allTags,
     },
-    revalidate: 60 * 1,
   };
 };
 

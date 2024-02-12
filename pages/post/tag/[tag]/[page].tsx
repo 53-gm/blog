@@ -1,34 +1,33 @@
 import Pagenation from "@/components/Pagenation/Pagenation";
 import SinglePost from "@/components/Post/SinglePost";
 import {
-  getAllTags,
   getNumberOfPageByTag,
-  getPostsByTagAndPage,
+  getPostsByTagAndPage
 } from "@/lib/notionAPI";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const allTags = await getAllTags();
-  let params: { params: { tag: any; page: string } }[] = [];
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const allTags = await getAllTags();
+//   let params: { params: { tag: any; page: string } }[] = [];
 
-  await Promise.all(
-    allTags.map((tag) => {
-      return getNumberOfPageByTag(tag).then((numberOfPageByTag: number) => {
-        for (let i = 1; i <= numberOfPageByTag; i++) {
-          params.push({ params: { tag: tag, page: i.toString() } });
-        }
-      });
-    })
-  );
+//   await Promise.all(
+//     allTags.map((tag) => {
+//       return getNumberOfPageByTag(tag).then((numberOfPageByTag: number) => {
+//         for (let i = 1; i <= numberOfPageByTag; i++) {
+//           params.push({ params: { tag: tag, page: i.toString() } });
+//         }
+//       });
+//     })
+//   );
 
-  return {
-    paths: params,
-    fallback: "blocking",
-  };
-};
+//   return {
+//     paths: params,
+//     fallback: "blocking",
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps : GetServerSideProps = async (context) => {
   const currentPage = context.params?.page;
   const currentTag = context.params?.tag;
   const posts = await getPostsByTagAndPage(
@@ -44,7 +43,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       numberOfPageByTag,
       currentTag,
     },
-    revalidate: 60 * 1,
   };
 };
 
